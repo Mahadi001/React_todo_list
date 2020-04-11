@@ -12,11 +12,14 @@ export default class TodoForm extends React.Component {
   };
 
   handleSubmit = (event) => {
-    this.preventDefault();
+    event.preventDefault();
     this.props.onSubmit({
       id: shortid.generate(),
       text: this.state.text,
       complete: false,
+    });
+    this.setState({
+      text: "",
     });
   };
 
@@ -26,9 +29,10 @@ export default class TodoForm extends React.Component {
         <input
           name="text"
           value={this.state.text}
-          onChange={this.state.handlechange}
+          onChange={this.handlechange}
           placeholder="Add Todos.."
         />
+        <button onClick={this.handleSubmit}>add todo</button>
       </form>
     );
   }
